@@ -60,7 +60,7 @@
 </script>
 
 <MainDetailsContainer>
-	<Header>{title}</Header>
+	<Header>{title} Section</Header>
 	{#each certificateList as certificateObj}
 		<div class="content_container">
 			<CertificateDetailContainer

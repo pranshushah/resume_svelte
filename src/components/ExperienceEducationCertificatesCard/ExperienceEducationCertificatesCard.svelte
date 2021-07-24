@@ -3,9 +3,9 @@
 
 	export let content1: string;
 	export let content2: string;
-	export let startingDate: string;
-	export let lastDate: string;
-	export let present: boolean;
+	export let startingDate: string = '';
+	export let lastDate: string = '';
+	export let present: boolean = false;
 	export let moreDetails: string[];
 
 	export let titleName1: string = '';
@@ -39,10 +39,12 @@
 			</span>
 		</p>
 	{/if}
-	{#if moreDetails.length > 0 && moreDetails[0].trim().length > 0}
+	{#if moreDetails.length > 0}
 		<ul>
 			{#each moreDetails as detail}
-				<li>{detail.trim()}</li>
+				{#if detail.trim().length > 0}
+					<li>{detail.trim()}</li>
+				{/if}
 			{/each}
 		</ul>
 	{/if}

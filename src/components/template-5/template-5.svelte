@@ -111,88 +111,108 @@
 						<li>Youtube : {youtube}</li>
 					{/if}
 				</ul>
-				<h3 class="template5_container__sub_header">Skills</h3>
-				<ul class="template5_container__skill_list">
-					{#each skills as skill}
-						<li class="template5_container__skill_element">{skill.value}</li>
-					{/each}
-				</ul>
-				<h3 class="template5_container__sub_header">Certificates</h3>
-				<ul class="template5_container__certificate_list">
-					{#each certificates as certificate}
-						<li>
-							<p>{certificate.title}</p>
-							<ul class="template5_container__sub_list">
-								{#each certificate.moreDetails as detail}
-									<li>{detail}</li>
-								{/each}
-							</ul>
-						</li>
-					{/each}
-				</ul>
+				{#if skills?.length > 0}
+					<h3 class="template5_container__sub_header">Skills</h3>
+					<ul class="template5_container__skill_list">
+						{#each skills as skill}
+							<li class="template5_container__skill_element">{skill.value}</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if certificates?.length > 0}
+					<h3 class="template5_container__sub_header">Certificates</h3>
+					<ul class="template5_container__certificate_list">
+						{#each certificates as certificate}
+							<li>
+								<p>{certificate.title}</p>
+								<ul class="template5_container__sub_list">
+									{#each certificate.moreDetails as detail}
+										{#if detail.length > 0}
+											<li>{detail}</li>
+										{/if}
+									{/each}
+								</ul>
+							</li>
+						{/each}
+					</ul>
+				{/if}
 			</div>
 			<div class="template5_container__right_container">
-				<h3 class="template5_container__right_sub_header">About me</h3>
-				<p class="template5_container__personal">{personal}</p>
-				<div class="template5_container__red_horizontal_line" />
-				<h3 class="template5_container__right_sub_header">Employment History</h3>
-				<ul class="template5_container__employment_list">
-					{#each experiences as experience}
-						<h4 class="template5_container__sub_sub_header">{experience.title}</h4>
-						<div class="template5_container__college_title">
-							<span>{experience.company} | </span><span>{experience.startingDate} - </span>
-							{#if experience.present}
-								<span>Present</span>
-							{:else}
-								<span>{experience.lastDate}</span>
-							{/if}
-						</div>
-						<ul class="template5_container__sub_list">
-							{#each experience.moreDetails as detail}
-								<li>{detail}</li>
-							{/each}
-						</ul>
-					{/each}
-				</ul>
-				<div class="template5_container__red_horizontal_line" />
-				<h3 class="template5_container__right_sub_header">Education</h3>
-				<ul class="template5_container__employment_list">
-					{#each educations as education}
-						<h4 class="template5_container__sub_sub_header">{education.college}</h4>
-						<div class="template5_container__college_title">
-							<span
-								>{education.degree}
-								{#if education.major} <span>({education.major})</span> {/if} |
-							</span><span>{education.startingDate} - </span>
-							{#if education.present}
-								<span>Present</span>
-							{:else}
-								<span>{education.graduationDate}</span>
-							{/if}
-						</div>
-						<ul class="template5_container__sub_list">
-							{#if education.moreDetails}
-								{#each education.moreDetails as detail}
-									<li>{detail}</li>
-								{/each}
-							{/if}
-						</ul>
-					{/each}
-				</ul>
-				<div class="template5_container__red_horizontal_line" />
-				<h3 class="template5_container__right_sub_header">Projects</h3>
-				<ul class="template5_container__certificate_list">
-					{#each projects as project}
-						<li>
-							<p>{project.title}</p>
+				{#if personal?.length > 0}
+					<h3 class="template5_container__right_sub_header">About me</h3>
+					<p class="template5_container__personal">{personal}</p>
+				{/if}
+				{#if experiences?.length > 0}
+					<div class="template5_container__red_horizontal_line" />
+					<h3 class="template5_container__right_sub_header">Employment History</h3>
+					<ul class="template5_container__employment_list">
+						{#each experiences as experience}
+							<h4 class="template5_container__sub_sub_header">{experience.title}</h4>
+							<div class="template5_container__college_title">
+								<span>{experience.company} | </span><span>{experience.startingDate} - </span>
+								{#if experience.present}
+									<span>Present</span>
+								{:else}
+									<span>{experience.lastDate}</span>
+								{/if}
+							</div>
 							<ul class="template5_container__sub_list">
-								{#each project.moreDetails as detail}
-									<li>{detail}</li>
+								{#each experience.moreDetails as detail}
+									{#if detail.length > 0}
+										<li>{detail}</li>
+									{/if}
 								{/each}
 							</ul>
-						</li>
-					{/each}
-				</ul>
+						{/each}
+					</ul>
+				{/if}
+				{#if educations?.length > 0}
+					<div class="template5_container__red_horizontal_line" />
+					<h3 class="template5_container__right_sub_header">Education</h3>
+					<ul class="template5_container__employment_list">
+						{#each educations as education}
+							<h4 class="template5_container__sub_sub_header">{education.college}</h4>
+							<div class="template5_container__college_title">
+								<span
+									>{education.degree}
+									{#if education.major} <span>({education.major})</span> {/if} |
+								</span><span>{education.startingDate} - </span>
+								{#if education.present}
+									<span>Present</span>
+								{:else}
+									<span>{education.graduationDate}</span>
+								{/if}
+							</div>
+							<ul class="template5_container__sub_list">
+								{#if education.moreDetails}
+									{#each education.moreDetails as detail}
+										{#if detail.length > 0}
+											<li>{detail}</li>
+										{/if}
+									{/each}
+								{/if}
+							</ul>
+						{/each}
+					</ul>
+				{/if}
+				{#if projects?.length > 0}
+					<div class="template5_container__red_horizontal_line" />
+					<h3 class="template5_container__right_sub_header">Projects</h3>
+					<ul class="template5_container__certificate_list">
+						{#each projects as project}
+							<li>
+								<p>{project.title}</p>
+								<ul class="template5_container__sub_list">
+									{#each project.moreDetails as detail}
+										{#if detail.length > 0}
+											<li>{detail}</li>
+										{/if}
+									{/each}
+								</ul>
+							</li>
+						{/each}
+					</ul>
+				{/if}
 			</div>
 		</div>
 	</div>

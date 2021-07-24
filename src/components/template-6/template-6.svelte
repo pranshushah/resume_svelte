@@ -64,24 +64,28 @@
 			<h1 class="template6_container__header">{name}</h1>
 			<p class="template6_container__jobTitle">{jobTitle}</p>
 		</div>
-		<div class="template6_container__personal_container">
-			<h3 class="template6_container__sub_header template6_container__sub_header--center">
-				Personal profile
-			</h3>
-			<p class="template6_container__personal">{personal}</p>
-		</div>
+		{#if personal?.length > 0}
+			<div class="template6_container__personal_container">
+				<h3 class="template6_container__sub_header template6_container__sub_header--center">
+					Personal profile
+				</h3>
+				<p class="template6_container__personal">{personal}</p>
+			</div>
+		{/if}
 		<div class="template6_container__details_container">
 			<div class="template6_container__left_container">
-				<h3 class="template6_container__sub_header template6_container__sub_header--color-blue">
-					Skills
-				</h3>
-				<ul
-					class="template6_container__skills_list template6_container__list template6_container__list-circle"
-				>
-					{#each skills as skill}
-						<li class="template6_container__skill_element">{skill.value}</li>
-					{/each}
-				</ul>
+				{#if skills?.length > 0}
+					<h3 class="template6_container__sub_header template6_container__sub_header--color-blue">
+						Skills
+					</h3>
+					<ul
+						class="template6_container__skills_list template6_container__list template6_container__list-circle"
+					>
+						{#each skills as skill}
+							<li class="template6_container__skill_element">{skill.value}</li>
+						{/each}
+					</ul>
+				{/if}
 				<h3 class="template6_container__sub_header template6_container__sub_header--color-blue">
 					contact details
 				</h3>
@@ -129,81 +133,97 @@
 						<li>Youtube : {youtube}</li>
 					{/if}
 				</ul>
-				<h3 class="template6_container__sub_header template6_container__sub_header--color-blue">
-					certificates
-				</h3>
-				<ul class="template6_container__list template6_container__list-disc">
-					{#each certificates as certificate}
-						<li>
-							<p class="breathingspace">{certificate.title}</p>
-							<ul class="template6_container__list template6_container__list-circle">
-								{#each certificate.moreDetails as detail}
-									<li>{detail}</li>
-								{/each}
-							</ul>
-						</li>
-					{/each}
-				</ul>
+				{#if certificates?.length > 0}
+					<h3 class="template6_container__sub_header template6_container__sub_header--color-blue">
+						certificates
+					</h3>
+					<ul class="template6_container__list template6_container__list-disc">
+						{#each certificates as certificate}
+							<li>
+								<p class="breathingspace">{certificate.title}</p>
+								<ul class="template6_container__list template6_container__list-circle">
+									{#each certificate.moreDetails as detail}
+										{#if detail.length > 0}
+											<li>{detail}</li>
+										{/if}
+									{/each}
+								</ul>
+							</li>
+						{/each}
+					</ul>
+				{/if}
 			</div>
 			<div class="template6_container__right_container">
-				<h3 class="template6_container__sub_header">Employment History :-</h3>
-				<ul class="template6_container__list template6_container__list-disc">
-					{#each experiences as experience}
-						<li><h4 class="template6_container__sub_sub_header">{experience.title}</h4></li>
-						<div class="template6_container__college_title">
-							<span>{experience.company} | </span><span>{experience.startingDate} - </span>
-							{#if experience.present}
-								<span>Present</span>
-							{:else}
-								<span>{experience.lastDate}</span>
-							{/if}
-						</div>
-						<ul class="template6_container__list template6_container__list-circle">
-							{#each experience.moreDetails as detail}
-								<li>{detail}</li>
-							{/each}
-						</ul>
-					{/each}
-				</ul>
-				<h3 class="template6_container__sub_header">Previous Education :-</h3>
-				<ul class="template6_container__list template6_container__list-disc">
-					{#each educations as education}
-						<li>
-							<h4 class="template6_container__sub_sub_header">{education.college}</h4>
-						</li>
-						<div class="template6_container__college_title">
-							<span
-								>{education.degree}
-								{#if education.major} <span>({education.major})</span> {/if} |
-							</span><span>{education.startingDate} - </span>
-							{#if education.present}
-								<span>Present</span>
-							{:else}
-								<span>{education.graduationDate}</span>
-							{/if}
-						</div>
-						<ul class="template6_container__list template6_container__list-circle">
-							{#if education.moreDetails}
-								{#each education.moreDetails as detail}
-									<li>{detail}</li>
-								{/each}
-							{/if}
-						</ul>
-					{/each}
-				</ul>
-				<h3 class="template6_container__sub_header">Projects :-</h3>
-				<ul class="template6_container__list template6_container__list-disc">
-					{#each projects as project}
-						<li>
-							<p class="breathingspace">{project.title}</p>
+				{#if experiences?.length > 0}
+					<h3 class="template6_container__sub_header">Employment History :-</h3>
+					<ul class="template6_container__list template6_container__list-disc">
+						{#each experiences as experience}
+							<li><h4 class="template6_container__sub_sub_header">{experience.title}</h4></li>
+							<div class="template6_container__college_title">
+								<span>{experience.company} | </span><span>{experience.startingDate} - </span>
+								{#if experience.present}
+									<span>Present</span>
+								{:else}
+									<span>{experience.lastDate}</span>
+								{/if}
+							</div>
 							<ul class="template6_container__list template6_container__list-circle">
-								{#each project.moreDetails as detail}
-									<li>{detail}</li>
+								{#each experience.moreDetails as detail}
+									{#if detail.length > 0}
+										<li>{detail}</li>
+									{/if}
 								{/each}
 							</ul>
-						</li>
-					{/each}
-				</ul>
+						{/each}
+					</ul>
+				{/if}
+				{#if educations?.length > 0}
+					<h3 class="template6_container__sub_header">Previous Education :-</h3>
+					<ul class="template6_container__list template6_container__list-disc">
+						{#each educations as education}
+							<li>
+								<h4 class="template6_container__sub_sub_header">{education.college}</h4>
+							</li>
+							<div class="template6_container__college_title">
+								<span
+									>{education.degree}
+									{#if education.major} <span>({education.major})</span> {/if} |
+								</span><span>{education.startingDate} - </span>
+								{#if education.present}
+									<span>Present</span>
+								{:else}
+									<span>{education.graduationDate}</span>
+								{/if}
+							</div>
+							<ul class="template6_container__list template6_container__list-circle">
+								{#if education.moreDetails}
+									{#each education.moreDetails as detail}
+										{#if detail.length > 0}
+											<li>{detail}</li>
+										{/if}
+									{/each}
+								{/if}
+							</ul>
+						{/each}
+					</ul>
+				{/if}
+				{#if projects?.length > 0}
+					<h3 class="template6_container__sub_header">Projects :-</h3>
+					<ul class="template6_container__list template6_container__list-disc">
+						{#each projects as project}
+							<li>
+								<p class="breathingspace">{project.title}</p>
+								<ul class="template6_container__list template6_container__list-circle">
+									{#each project.moreDetails as detail}
+										{#if detail.length > 0}
+											<li>{detail}</li>
+										{/if}
+									{/each}
+								</ul>
+							</li>
+						{/each}
+					</ul>
+				{/if}
 			</div>
 		</div>
 	</div>
