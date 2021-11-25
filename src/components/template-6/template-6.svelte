@@ -213,6 +213,9 @@
 						{#each projects as project}
 							<li>
 								<p class="breathingspace">{project.title}</p>
+								<p class="breathingspace">
+									<span class="template6_container__project_link_label">Link : </span>{project.link}
+								</p>
 								<ul class="template6_container__list template6_container__list-circle">
 									{#each project.moreDetails as detail}
 										{#if detail.length > 0}
@@ -356,5 +359,9 @@
 	}
 	.breathingspace {
 		margin: getSpace(1) * 1px 0;
+	}
+	.template6_container__project_link_label {
+		font-weight: 600;
+		margin: 0 getSpace(1) * 1px;
 	}
 </style>

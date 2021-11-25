@@ -18,6 +18,7 @@
 	@import '../../utils/scss/_variables.scss';
 	@import '../../utils/scss/_lineHeight.scss';
 	@import '../../utils/scss/_fontSize.scss';
+	@import '../../utils/scss/_media.scss';
 
 	.container {
 		display: flex;
@@ -41,6 +42,12 @@
 		);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
+		@include mobile() {
+			text-align: center;
+			line-height: map-get($map: $line-height, $key: 'large') * 1px;
+			font-size: getFontSize(9) * 1px;
+			margin-top: getSpace(10) * 1px;
+		}
 	}
 	.index_container__text {
 		margin-top: getSpace(1) * 1px;
@@ -74,6 +81,10 @@
 		}
 		&:active {
 			transform: scale(0.9);
+		}
+		@include mobile() {
+			padding: getSpace(2) * 1px getSpace(3) * 1px;
+			font-size: getFontSize(4) * 1px;
 		}
 	}
 </style>

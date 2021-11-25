@@ -36,6 +36,7 @@
 
 	.contanier {
 		min-width: 450px;
+		max-width: 600px;
 		border-radius: 2px;
 		background-color: $whiteColor;
 		margin: getSpace(1) * 1px;

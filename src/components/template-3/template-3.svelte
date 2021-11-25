@@ -198,6 +198,9 @@
 						{#each projects as project}
 							<li>
 								<p class="template3_container__certificate_title">{project.title}</p>
+								<p class="breathingspace">
+									<span class="template3_container__project_link_label">Link : </span>{project.link}
+								</p>
 								<ul class="template3_container__sub_list">
 									{#each project.moreDetails as detail}
 										{#if detail.length > 0}
@@ -357,5 +360,13 @@
 		font-size: getFontSize(3) * 1px;
 		text-transform: capitalize;
 		padding: getSpace(0.5) * 1px 0;
+	}
+
+	.breathingspace {
+		margin: getSpace(1) * 1px 0;
+	}
+	.template3_container__project_link_label {
+		font-weight: 600;
+		margin: 0 getSpace(1) * 1px;
 	}
 </style>

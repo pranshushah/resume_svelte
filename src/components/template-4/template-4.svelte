@@ -195,6 +195,9 @@
 					{#each projects as project}
 						<li>
 							<p class="template4_container__certificate_title">{project.title}</p>
+							<p class="breathingspace">
+								<span class="template4_container__project_link_label">Link : </span>{project.link}
+							</p>
 							<ul class="template4_container__sub_list">
 								{#each project.moreDetails as detail}
 									{#if detail.length > 0}
@@ -333,5 +336,12 @@
 	.template4_container__college_title {
 		text-transform: capitalize;
 		padding: getSpace(0.5) * 1px 0;
+	}
+	.breathingspace {
+		margin: getSpace(1) * 1px 0;
+	}
+	.template4_container__project_link_label {
+		font-weight: 600;
+		margin: 0 getSpace(1) * 1px;
 	}
 </style>
