@@ -69,19 +69,19 @@
 		<div class="template3_container__details_container">
 			<div class="template1_container__left_container">
 				{#if personal?.length > 0}
-					<h3 class="template3_container__sub_header">Professional Bio</h3>
-					<p>{personal}</p>
+					<h3 class="template3_container__sub_header">Personal profile :-</h3>
+					<p class="template3_container__personal">{personal}</p>
 				{/if}
 				{#if skills?.length > 0}
-					<h3 class="template3_container__sub_header">Skills</h3>
+					<h3 class="template3_container__sub_header">Skills:-</h3>
 					<ul class="template3_container__skills_list">
 						{#each skills as skill}
 							<li class="template3_container__skill_element">{skill.value}</li>
 						{/each}
 					</ul>
 				{/if}
+				<h3 class="template3_container__sub_header">contact details:-</h3>
 				<ul class="template3_container__contact_list">
-					<h3 class="template3_container__sub_header">contact details</h3>
 					{#if email}
 						<li>Email : {email}</li>
 					{/if}
@@ -123,7 +123,7 @@
 					{/if}
 				</ul>
 				{#if certificates?.length > 0}
-					<h3 class="template3_container__sub_header">Certificates</h3>
+					<h3 class="template3_container__sub_header">Certificates:-</h3>
 					<ul class="template3_container__contact_list">
 						{#each certificates as certificate}
 							<li>
@@ -142,7 +142,7 @@
 			</div>
 			<div class="template3_container__right_container">
 				{#if experiences?.length > 0}
-					<h3 class="template3_container__sub_header">Employment History</h3>
+					<h3 class="template3_container__sub_header">professional experience :-</h3>
 					<ul class="template3_container__employment_list">
 						{#each experiences as experience}
 							<li><h4 class="template3_container__sub_sub_header">{experience.title}</h4></li>
@@ -165,7 +165,7 @@
 					</ul>
 				{/if}
 				{#if educations?.length > 0}
-					<h3 class="template3_container__sub_header">Previous Education</h3>
+					<h3 class="template3_container__sub_header">Education :-</h3>
 					<ul class="template3_container__employment_list">
 						{#each educations as education}
 							<li><h4 class="template3_container__sub_sub_header">{education.college}</h4></li>
@@ -193,7 +193,7 @@
 					</ul>
 				{/if}
 				{#if projects?.length > 0}
-					<h3 class="template3_container__sub_header">Projects</h3>
+					<h3 class="template3_container__sub_header">Projects :-</h3>
 					<ul class="template3_container__certificate_list">
 						{#each projects as project}
 							<li>
@@ -242,13 +242,13 @@
 	}
 
 	.template3_container {
-		width: 770px;
+		width: 950px;
 		background-color: #fbfae2;
 		margin: getSpace(2) * 1px 0;
 		color: rgb(12, 12, 12);
 		@include print() {
 			margin: 0;
-			width: 900px;
+			width: 1050px;
 		}
 		@include tablet() {
 			width: 720px;
@@ -274,7 +274,8 @@
 	}
 	.template3_container__jobTitle {
 		text-align: center;
-		font-size: getFontSize(5) * 1px;
+		text-transform: capitalize;
+		font-size: getFontSize(6) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template3_container__red_border {
@@ -289,9 +290,16 @@
 		margin-top: getSpace(2) * 1px;
 	}
 	.template1_container__left_container {
-		width: 50%;
+		width: 55%;
 		border-right: 1px solid rgb(15, 15, 15);
 		padding: getSpace(2.5) * 1px getSpace(0.5) * 1px;
+	}
+
+	.template3_container__personal {
+		margin: getSpace(1) * 1px;
+		margin-bottom: getSpace(2) * 1px;
+		font-size: getFontSize(4) * 1px;
+		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template3_container__sub_header {
 		text-transform: uppercase;
@@ -309,14 +317,14 @@
 	}
 
 	.template3_container__contact_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		margin-block-start: 0;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;
 		list-style: disc;
 	}
 	.template3_container__skills_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		margin-block-start: 0;
 		padding-left: 16px;
 		display: flex;
@@ -333,7 +341,7 @@
 		margin: getSpace(1.5) * 1px 0;
 	}
 	.template3_container__certificate_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		margin-block-start: 0;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;

@@ -67,10 +67,10 @@
 		<div class="template1_container__details_container">
 			<div class="template1_container__blue_container">
 				{#if personal?.length > 0}
-					<h3 class="template1_container__sub_header">Personal profile</h3>
+					<h3 class="template1_container__sub_header">Personal profile :-</h3>
 					<p class="template1_container__personal">{personal}</p>
 				{/if}
-				<h3 class="template1_container__sub_header">contact details</h3>
+				<h3 class="template1_container__sub_header">contact details :-</h3>
 				<ul class="template1_container__contact_list">
 					{#if email}
 						<li>Email : {email}</li>
@@ -133,7 +133,7 @@
 					</ul>
 				{/if}
 				{#if skills.length > 0}
-					<h3 class="template1_container__sub_header">Skills</h3>
+					<h3 class="template1_container__sub_header">Skills :-</h3>
 					<ul class="template1_container__skills_list">
 						{#each skills as skill}
 							<li class="template1_container__skill_element">{skill.value}</li>
@@ -144,7 +144,7 @@
 			<div>
 				<div class="template1_container__white_container">
 					{#if experiences.length > 0}
-						<h3 class="template1_container__sub_header">Employment History :-</h3>
+						<h3 class="template1_container__sub_header">professional experience :-</h3>
 						<ul class="template1_container__employment_list">
 							{#each experiences as experience}
 								<li><h4 class="template1_container__sub_sub_header">{experience.title}</h4></li>
@@ -170,7 +170,7 @@
 				<div class="template1_container__blue_horizontal_line" />
 				<div class="template1_container__white_container">
 					{#if educations.length > 0}
-						<h3 class="template1_container__sub_header">Previous Education :-</h3>
+						<h3 class="template1_container__sub_header">Education :-</h3>
 						<ul class="template1_container__employment_list">
 							{#each educations as education}
 								<li><h4 class="template1_container__sub_sub_header">{education.college}</h4></li>
@@ -249,10 +249,10 @@
 
 	.template1_container {
 		margin: getSpace(2) * 1px 0;
-		width: 770px;
+		width: 950px;
 		@include print() {
 			margin: 0;
-			width: 900px;
+			width: 1050px;
 		}
 		@include tablet() {
 			width: 720px;
@@ -275,7 +275,7 @@
 	}
 	.template1_container__jobTitle {
 		text-align: center;
-		font-size: getFontSize(5) * 1px;
+		font-size: getFontSize(6) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template1_container__details_container {
@@ -286,17 +286,19 @@
 	}
 	.template1_container__blue_container {
 		background-color: #b9eeeb;
-		width: 48%;
+		width: 55%;
 		padding: getSpace(1.5) * 1px getSpace(3) * 1px;
 	}
 	.template1_container__personal {
 		margin: getSpace(1) * 1px;
-		font-size: getFontSize(3) * 1px;
+		margin-bottom: getSpace(2) * 1px;
+		font-size: getFontSize(4) * 1px;
+		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template1_container__sub_header {
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		padding: getSpace(2) * 1px 0;
+		padding: getSpace(1.5) * 1px 0;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 
@@ -308,13 +310,13 @@
 	}
 
 	.template1_container__contact_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;
 		list-style: disc;
 	}
 	.template1_container__skills_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		margin-block-start: 0;
 		padding-left: 16px;
 		display: flex;

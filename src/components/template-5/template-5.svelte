@@ -66,7 +66,11 @@
 		</div>
 		<div class="template5_container__details_container">
 			<div class="template5_container__left_container">
-				<h3 class="template5_container__sub_header">contact details</h3>
+				{#if personal?.length > 0}
+					<h3 class="template5_container__sub_header">About me :-</h3>
+					<p class="template5_container__personal">{personal}</p>
+				{/if}
+				<h3 class="template5_container__sub_header">contact details :-</h3>
 				<ul class="template5_container__contact_list">
 					{#if email}
 						<li>Email : {email}</li>
@@ -82,9 +86,6 @@
 					{/if}
 					{#if github}
 						<li>github : /{github}</li>
-					{/if}
-					{#if phone}
-						<li>Phone : {phone}</li>
 					{/if}
 					{#if linkdin}
 						<li>Linkdin : {linkdin}</li>
@@ -112,7 +113,7 @@
 					{/if}
 				</ul>
 				{#if skills?.length > 0}
-					<h3 class="template5_container__sub_header">Skills</h3>
+					<h3 class="template5_container__sub_header">Skills :-</h3>
 					<ul class="template5_container__skill_list">
 						{#each skills as skill}
 							<li class="template5_container__skill_element">{skill.value}</li>
@@ -120,7 +121,7 @@
 					</ul>
 				{/if}
 				{#if certificates?.length > 0}
-					<h3 class="template5_container__sub_header">Certificates</h3>
+					<h3 class="template5_container__sub_header">Certificates :-</h3>
 					<ul class="template5_container__certificate_list">
 						{#each certificates as certificate}
 							<li>
@@ -138,13 +139,8 @@
 				{/if}
 			</div>
 			<div class="template5_container__right_container">
-				{#if personal?.length > 0}
-					<h3 class="template5_container__right_sub_header">About me</h3>
-					<p class="template5_container__personal">{personal}</p>
-				{/if}
 				{#if experiences?.length > 0}
-					<div class="template5_container__red_horizontal_line" />
-					<h3 class="template5_container__right_sub_header">Employment History</h3>
+					<h3 class="template5_container__right_sub_header">professional experience :-</h3>
 					<ul class="template5_container__employment_list">
 						{#each experiences as experience}
 							<h4 class="template5_container__sub_sub_header">{experience.title}</h4>
@@ -168,7 +164,7 @@
 				{/if}
 				{#if educations?.length > 0}
 					<div class="template5_container__red_horizontal_line" />
-					<h3 class="template5_container__right_sub_header">Education</h3>
+					<h3 class="template5_container__right_sub_header">Education :-</h3>
 					<ul class="template5_container__employment_list">
 						{#each educations as education}
 							<h4 class="template5_container__sub_sub_header">{education.college}</h4>
@@ -197,7 +193,7 @@
 				{/if}
 				{#if projects?.length > 0}
 					<div class="template5_container__red_horizontal_line" />
-					<h3 class="template5_container__right_sub_header">Projects</h3>
+					<h3 class="template5_container__right_sub_header">Projects :-</h3>
 					<ul class="template5_container__certificate_list">
 						{#each projects as project}
 							<li>
@@ -246,10 +242,10 @@
 	}
 	.template5_container {
 		margin: getSpace(2) * 1px 0;
-		width: 770px;
+		width: 920px;
 		@include print() {
 			margin: 0;
-			width: 900px;
+			width: 1020px;
 		}
 		@include tablet() {
 			width: 720px;
@@ -272,7 +268,8 @@
 	}
 	.template5_container__jobTitle {
 		text-align: center;
-		font-size: getFontSize(5) * 1px;
+		text-transform: capitalize;
+		font-size: getFontSize(6) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template5_container__details_container {
@@ -280,7 +277,7 @@
 	}
 	.template5_container__left_container {
 		background-color: #263547;
-		width: 43%;
+		width: 55%;
 		color: #f8f8f8;
 		padding: getSpace(2.5) * 1px getSpace(4) * 1px;
 	}
@@ -292,17 +289,20 @@
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template5_container__contact_list {
-		font-size: getFontSize(3) * 1px;
+		list-style: circle;
+		font-size: getFontSize(4) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 8px;
 	}
 	.template5_container__skill_list {
+		list-style: circle;
 		padding-left: 8px;
 		display: flex;
 		flex-wrap: wrap;
 	}
 	.template5_container__skill_element {
 		width: 50%;
+		font-size: getFontSize(4) * 1px;
 		margin: getSpace(0.5) * 1px 0;
 	}
 	.template5_container__certificate_list {
@@ -323,7 +323,9 @@
 
 	.template5_container__personal {
 		margin: getSpace(1) * 1px;
-		font-size: getFontSize(3) * 1px;
+		margin-bottom: getSpace(2) * 1px;
+		font-size: getFontSize(4) * 1px;
+		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template5_container__red_horizontal_line {
 		width: 100%;

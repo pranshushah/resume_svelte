@@ -240,10 +240,10 @@
 	.template4_container {
 		display: flex;
 		margin: getSpace(2) * 1px 0;
-		width: 770px;
+		width: 950px;
 		@include print() {
 			margin: 0;
-			width: 900px;
+			width: 1050px;
 		}
 		@include tablet() {
 			width: 720px;
@@ -270,24 +270,27 @@
 	}
 	.template4_container__jobTitle {
 		text-align: center;
+		text-transform: capitalize;
 		font-size: getFontSize(5) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		margin-bottom: getSpace(6) * 1px;
 	}
 	.template4_container__personal {
 		margin: getSpace(1) * 1px;
-		font-size: getFontSize(3) * 1px;
+		margin-bottom: getSpace(2) * 1px;
+		font-size: getFontSize(4) * 1px;
+		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template4_container__sub_header {
 		color: #b0484e;
+		font-size: getFontSize(5) * 1px;
 		text-transform: uppercase;
-		text-align: center;
 		letter-spacing: 1px;
-		margin: getSpace(2) * 1px 0;
+		margin: getSpace(2.5) * 1px 0;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template4_container__certificate_list {
-		font-size: getFontSize(2) * 1px;
+		font-size: getFontSize(4) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;
 		list-style: disc;
@@ -298,13 +301,13 @@
 		margin: getSpace(1.5) * 1px 0;
 	}
 	.template4_container__sub_list {
-		font-size: getFontSize(2) * 1px;
+		font-size: getFontSize(3) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;
 		list-style: circle;
 	}
 	.template4_container__contact_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;
 		list-style: disc;

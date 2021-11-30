@@ -68,10 +68,10 @@
 			<div class="template2_container__white_horizontal_line" />
 			<div class="template2_container__details_container">
 				{#if personal?.length > 0}
-					<h3 class="template2_container__sub_header">Personal profile</h3>
+					<h3 class="template2_container__sub_header">Personal profile:-</h3>
 					<p class="template2_container__personal">{personal}</p>
 				{/if}
-				<h3 class="template2_container__sub_header">- Contact me</h3>
+				<h3 class="template2_container__sub_header">Contact Details:-</h3>
 				<ul class="template2_container__contact_list">
 					{#if email}
 						<li>Email : {email}</li>
@@ -131,7 +131,7 @@
 					</ul>
 				{/if}
 				{#if skills?.length > 0}
-					<h3 class="template2_container__sub_header">- Skills</h3>
+					<h3 class="template2_container__sub_header">Skills :-</h3>
 					<ul class="template2_container__skills_list">
 						{#each skills as skill}
 							<li class="template2_container__skill_element">{skill.value}</li>
@@ -142,7 +142,7 @@
 		</div>
 		<div class="template2_container__right_container">
 			{#if experiences?.length > 0}
-				<h3 class="template2_container__sub_header">- experience</h3>
+				<h3 class="template2_container__sub_header">professional experience :-</h3>
 				<ul class="template2_container__employment_list">
 					{#each experiences as experience}
 						<li><h4 class="template2_container__sub_sub_header">{experience.title}</h4></li>
@@ -165,7 +165,7 @@
 				</ul>
 			{/if}
 			{#if educations?.length > 0}
-				<h3 class="template2_container__sub_header">- Education</h3>
+				<h3 class="template2_container__sub_header">Education :-</h3>
 				<ul class="template2_container__employment_list">
 					{#each educations as education}
 						<li><h4 class="template2_container__sub_sub_header">{education.college}</h4></li>
@@ -193,7 +193,7 @@
 				</ul>
 			{/if}
 			{#if projects?.length > 0}
-				<h3 class="template2_container__sub_header">- Projects</h3>
+				<h3 class="template2_container__sub_header">Projects :-</h3>
 				<ul class="template2_container__certificate_list">
 					{#each projects as project}
 						<li>
@@ -242,13 +242,13 @@
 
 	.template2_container {
 		display: flex;
-		width: 770px;
+		width: 950px;
 		margin: getSpace(2) * 1px 0;
 		background-color: rgb(15, 15, 15);
 		color: rgb(245, 245, 245);
 		@include print() {
 			margin: 0;
-			width: 900px;
+			width: 1050px;
 		}
 		@include tablet() {
 			width: 720px;
@@ -289,7 +289,8 @@
 	}
 	.template2_container__personal {
 		margin: getSpace(1) * 1px;
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
+		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template2_container__details_container {
 		padding: getSpace(2) * 1px getSpace(3.5) * 1px;
@@ -303,7 +304,7 @@
 		list-style: disc;
 	}
 	.template2_container__sub_list {
-		font-size: getFontSize(2) * 1px;
+		font-size: getFontSize(3) * 1px;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 		padding-left: 16px;
 		list-style: circle;
@@ -311,7 +312,7 @@
 	.template2_container__sub_sub_header {
 		text-transform: capitalize;
 		font-size: getFontSize(4) * 1px;
-		padding: getSpace(2) * 1px 0;
+		padding: getSpace(1) * 1px 0;
 		line-height: map-get($map: $line-height, $key: 'medium') * 1px;
 	}
 	.template2_container__certificate_title {
@@ -327,7 +328,7 @@
 	}
 
 	.template2_container__skills_list {
-		font-size: getFontSize(3) * 1px;
+		font-size: getFontSize(4) * 1px;
 		margin-block-start: 0;
 		padding-left: 16px;
 		display: flex;
