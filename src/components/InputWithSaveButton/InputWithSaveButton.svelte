@@ -31,7 +31,6 @@
 	<Input
 		bind:value={inputValue}
 		on:keyup={onEnterHandler}
-		on:
 		{error}
 		bind:inputRef
 		{labelName}

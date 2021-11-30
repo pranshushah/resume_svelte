@@ -4,6 +4,8 @@
 	import NextBackLink from '../NextBackLink/NextBackLink.svelte';
 	import Button from '../UI/Button.svelte';
 	import Header from '../UI/Header.svelte';
+	import { dndzone, DndEvent } from 'svelte-dnd-action';
+	import { flip } from 'svelte/animate';
 	import type { experience, newExperienceObj, objWithId } from '../../utils/types';
 	import { getValueFromLocalStorage } from '../../utils/helper_function/getLocalStorage';
 	import { setValueToLocalStorage } from '../../utils/helper_function/setLocalStorage';
@@ -23,8 +25,11 @@
 	function addExperienceHandler(event: CustomEvent<newExperienceObj>) {
 		experienceList = [...experienceList, event.detail.newExperienceDetail];
 		setValueToLocalStorage('experience', experienceList);
-
 		showExperienceDetailAdder = false;
+	}
+	function onDragDone(items: CustomEvent<DndEvent>) {
+		experienceList = items.detail.items as experience[];
+		setValueToLocalStorage('experience', experienceList);
 	}
 
 	function editExperienceHandler(event: CustomEvent<newExperienceObj>) {
@@ -51,17 +56,23 @@
 
 <MainDetailsContainer>
 	<Header>Experience</Header>
-	{#each experienceList as experienceObj}
-		<div class="content_container">
-			<ExperienceDetailContainer
-				{...experienceObj}
-				moreDetails={experienceObj.moreDetails ? experienceObj.moreDetails.join('*') : ''}
-				on:delete={deleteExperienceHandler}
-				on:edit={editExperienceHandler}
-				on:add={addExperienceHandler}
-			/>
-		</div>
-	{/each}
+	<div
+		use:dndzone={{ items: experienceList, flipDurationMs: 200 }}
+		on:finalize={onDragDone}
+		on:consider={onDragDone}
+	>
+		{#each experienceList as experienceObj, index (experienceObj.id)}
+			<div class="content_container" animate:flip={{ duration: 200 }}>
+				<ExperienceDetailContainer
+					{...experienceObj}
+					moreDetails={experienceObj.moreDetails ? experienceObj.moreDetails.join('*') : ''}
+					on:delete={deleteExperienceHandler}
+					on:edit={editExperienceHandler}
+					on:add={addExperienceHandler}
+				/>
+			</div>
+		{/each}
+	</div>
 	<div class="button_container">
 		{#if showExperienceDetailAdder}
 			<ExperienceDetail on:add={addExperienceHandler} on:show_add_button={showAddButtonHandler} />

@@ -14,6 +14,8 @@
 	import { setValueToLocalStorage } from '../../utils/helper_function/setLocalStorage';
 	import CertificateDetailContainer from './CertificateDetail/CertificateDetailContainer.svelte';
 	import CertificateDetail from './CertificateDetail/CertificateDetail.svelte';
+	import { dndzone, DndEvent } from 'svelte-dnd-action';
+	import { flip } from 'svelte/animate';
 
 	export let key: 'certificate' | 'project' = 'certificate';
 
@@ -30,6 +32,12 @@
 	function showCertificateDetailHandler() {
 		showCertificateDetailAdder = true;
 	}
+
+	function onDragDone(items: CustomEvent<DndEvent>) {
+		certificateList = items.detail.items as certificate[];
+		setValueToLocalStorage(key === 'certificate' ? 'certificate' : 'project', certificateList);
+	}
+
 	function addCertificateHandler(event: CustomEvent<newCertificateObj>) {
 		certificateList = [...certificateList, event.detail.newCertificateDetail];
 		setValueToLocalStorage(key, certificateList);
@@ -61,17 +69,23 @@
 
 <MainDetailsContainer>
 	<Header>{title} Section</Header>
-	{#each certificateList as certificateObj}
-		<div class="content_container">
-			<CertificateDetailContainer
-				{...certificateObj}
-				moreDetails={certificateObj.moreDetails ? certificateObj.moreDetails.join('*') : ''}
-				on:delete={deleteExperienceHandler}
-				on:edit={editCertificateHandler}
-				on:add={addCertificateHandler}
-			/>
-		</div>
-	{/each}
+	<div
+		use:dndzone={{ items: certificateList, flipDurationMs: 200 }}
+		on:finalize={onDragDone}
+		on:consider={onDragDone}
+	>
+		{#each certificateList as certificateObj, index (certificateObj.id)}
+			<div class="content_container" animate:flip={{ duration: 200 }}>
+				<CertificateDetailContainer
+					{...certificateObj}
+					moreDetails={certificateObj.moreDetails ? certificateObj.moreDetails.join('*') : ''}
+					on:delete={deleteExperienceHandler}
+					on:edit={editCertificateHandler}
+					on:add={addCertificateHandler}
+				/>
+			</div>
+		{/each}
+	</div>
 	<div class="button_container">
 		{#if showCertificateDetailAdder}
 			<CertificateDetail on:add={addCertificateHandler} on:show_add_button={showAddButtonHandler} />

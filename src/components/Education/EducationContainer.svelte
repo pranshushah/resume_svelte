@@ -2,7 +2,8 @@
 	import type { education, newEducationObj, objWithId } from '../../utils/types';
 	import { onMount } from 'svelte';
 	import { getValueFromLocalStorage } from '../../utils/helper_function/getLocalStorage';
-
+	import { dndzone, DndEvent } from 'svelte-dnd-action';
+	import { flip } from 'svelte/animate';
 	import MainDetailsContainer from '../MainDetailsContainer/MainDetailsContainer.svelte';
 	import NextBackLink from '../NextBackLink/NextBackLink.svelte';
 	import Button from '../UI/Button.svelte';
@@ -22,6 +23,11 @@
 		showDetailAdder = true;
 	}
 
+	function onDragDone(items: CustomEvent<DndEvent>) {
+		educations = items.detail.items as education[];
+		setValueToLocalStorage('education', educations);
+	}
+
 	function addEducationHandler(event: CustomEvent<newEducationObj>) {
 		const newEducations = [...educations];
 		newEducations.push(event.detail.neweducationDetail);
@@ -30,7 +36,6 @@
 
 		showDetailAdder = false;
 	}
-
 	function editEducationHandler(event: CustomEvent<newEducationObj>) {
 		const editIndex = educations.findIndex(
 			(education) => education.id === event.detail.neweducationDetail.id
@@ -56,24 +61,30 @@
 
 <MainDetailsContainer>
 	<Header>Education</Header>
-	{#each educations as educationObj}
-		<div class="content_container">
-			<EducationDetailContainer
-				id={educationObj.id}
-				moreDetails={educationObj.moreDetails ? educationObj.moreDetails.join('*') : ''}
-				collegeValue={educationObj.college}
-				degreeValue={educationObj.degree}
-				startingDate={educationObj.startingDate}
-				graduateDate={educationObj.graduationDate}
-				majorValue={educationObj.major}
-				gradeValue={educationObj.grade}
-				presentValue={educationObj.present}
-				on:delete={deleteEducationHandler}
-				on:edit={editEducationHandler}
-				on:add={addEducationHandler}
-			/>
-		</div>
-	{/each}
+	<div
+		use:dndzone={{ items: educations, flipDurationMs: 200 }}
+		on:finalize={onDragDone}
+		on:consider={onDragDone}
+	>
+		{#each educations as educationObj, index (educationObj.id)}
+			<div class="content_container" animate:flip={{ duration: 200 }}>
+				<EducationDetailContainer
+					id={educationObj.id}
+					moreDetails={educationObj.moreDetails ? educationObj.moreDetails.join('*') : ''}
+					collegeValue={educationObj.college}
+					degreeValue={educationObj.degree}
+					startingDate={educationObj.startingDate}
+					graduateDate={educationObj.graduationDate}
+					majorValue={educationObj.major}
+					gradeValue={educationObj.grade}
+					presentValue={educationObj.present}
+					on:delete={deleteEducationHandler}
+					on:edit={editEducationHandler}
+					on:add={addEducationHandler}
+				/>
+			</div>
+		{/each}
+	</div>
 	<div class="button_container">
 		{#if showDetailAdder}
 			<EducationDetail on:add={addEducationHandler} on:show_add_button={showAddButtonHandler} />

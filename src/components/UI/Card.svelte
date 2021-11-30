@@ -4,6 +4,7 @@
 
 	const dispatch = createEventDispatcher();
 
+	export let isDraggable = false;
 	export let showDelete = false;
 	function deleteHandler() {
 		dispatch('delete');
@@ -14,7 +15,7 @@
 	}
 </script>
 
-<div class="contanier">
+<div class="contanier" class:contanier_drag={isDraggable}>
 	<div class="contentContainer">
 		<slot><h1>Please provide content</h1></slot>
 	</div>
@@ -59,6 +60,10 @@
 			max-width: 260px;
 			margin: getSpace(1) * 1px;
 		}
+	}
+
+	.contanier_drag {
+		cursor: move;
 	}
 
 	.contentContainer {

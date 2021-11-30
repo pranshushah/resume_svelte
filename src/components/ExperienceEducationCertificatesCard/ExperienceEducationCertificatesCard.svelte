@@ -13,7 +13,7 @@
 	export let titleName3: string = '';
 </script>
 
-<Card on:delete on:edit showDelete>
+<Card on:delete on:edit showDelete isDraggable={true}>
 	<p>
 		<span class="title">{titleName1} : </span>
 		<span class="content">{content1}</span>
